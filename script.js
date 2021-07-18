@@ -4,79 +4,79 @@
 
 // ----------------------------------------------------Data-----------------------------------------------
 const account1 = {
-  owner: 'Himanshu kushwaha',
+  owner: 'Sahil Suman',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
 
   pin: 1111,
   movementsDates: [
-    '2019-11-18T21:31:17.178Z',
-    '2019-12-23T07:42:02.383Z',
-    '2020-01-28T09:15:04.904Z',
-    '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
-    '2020-07-26T17:01:17.194Z',
-    '2020-07-28T23:36:17.929Z',
-    '2020-08-01T10:51:36.790Z',
+    '2021-07-18T21:31:17.178Z',
+    '2021-07-17T07:42:02.383Z',
+    '2021-07-16T09:15:04.904Z',
+    '2021-07-15T10:17:24.185Z',
+    '2021-07-14T14:11:59.604Z',
+    '2021-07-18T17:01:17.194Z',
+    '2021-07-01T23:36:17.929Z',
+    '2021-07-16T10:51:36.790Z',
   ],
-  currency: 'EUR',
-  locale: 'pt-PT',
+  currency: 'INR',
+  locale: 'en-UK',
 };
 
 const account2 = {
-  owner: 'Abhishek Pandey',
+  owner: 'Ram Kapoor',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
   movementsDates: [
-    '2019-11-01T13:15:33.035Z',
-    '2019-11-30T09:48:16.867Z',
-    '2019-12-25T06:04:23.907Z',
-    '2020-01-25T14:18:46.235Z',
-    '2020-02-05T16:33:06.386Z',
-    '2020-04-10T14:43:26.374Z',
-    '2020-06-25T18:49:59.371Z',
-    '2020-07-26T12:01:20.894Z',
+    '2021-07-17T13:15:33.035Z',
+    '2021-07-16T09:48:16.867Z',
+    '2021-07-15T06:04:23.907Z',
+    '2021-06-15T14:18:46.235Z',
+    '2021-07-15T16:33:06.386Z',
+    '2021-07-14T14:43:26.374Z',
+    '2021-07-01T18:49:59.371Z',
+    '2021-07-18T12:01:20.894Z',
   ],
-  currency: 'USD',
-  locale: 'en-US',
+  currency: 'INR',
+  locale: 'en-IN',
 };
 
 const account3 = {
-  owner: 'Rishab Joshi',
+  owner: 'Robin Sharma',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
   movementsDates: [
-    '2019-11-18T21:31:17.178Z',
-    '2019-12-23T07:42:02.383Z',
-    '2020-01-28T09:15:04.904Z',
-    '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
-    '2020-07-26T17:01:17.194Z',
-    '2020-07-28T23:36:17.929Z',
-    '2020-08-01T10:51:36.790Z',
+    '2021-07-18T21:31:17.178Z',
+    '2021-07-17T07:42:02.383Z',
+    '2021-07-16T09:15:04.904Z',
+    '2021-07-15T10:17:24.185Z',
+    '2021-07-14T14:11:59.604Z',
+    '2021-07-18T17:01:17.194Z',
+    '2021-07-17T23:36:17.929Z',
+    '2021-07-16T10:51:36.790Z',
   ],
-  currency: 'EUR',
-  locale: 'pt-PT',
+  currency: 'INR',
+  locale: 'en-US',
 };
 
 const account4 = {
-  owner: 'Harshit Kumar Rai',
+  owner: 'Yash Kumar',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
   movementsDates: [
-    '2019-11-01T13:15:33.035Z',
-    '2019-11-30T09:48:16.867Z',
-    '2019-12-25T06:04:23.907Z',
-    '2020-01-25T14:18:46.235Z',
-    '2020-02-05T16:33:06.386Z',
-    '2020-04-10T14:43:26.374Z',
-    '2020-06-25T18:49:59.371Z',
-    '2020-07-26T12:01:20.894Z',
+    '2021-07-17T13:15:33.035Z',
+    '2021-07-16T09:48:16.867Z',
+    '2021-07-15T06:04:23.907Z',
+    '2021-07-08T14:18:46.235Z',
+    '2021-07-15T16:33:06.386Z',
+    '2021-07-14T14:43:26.374Z',
+    '2021-07-17T18:49:59.371Z',
+    '2021-07-18T12:01:20.894Z',
   ],
-  currency: 'USD',
+  currency: 'INR',
   locale: 'en-US',
 };
 
@@ -107,49 +107,96 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+//------------------------------creating dates------------------------------------------------------------
+const formatMovementDate = function (date, locale) {
+  const calcDayPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+  const dayPassed = calcDayPassed(new Date(), date);
+  console.log(dayPassed);
+  if (dayPassed === 0) return 'Today';
+  if (dayPassed === 1) return 'Yesterday';
+  if (dayPassed <= 7) return `${dayPassed} days ago`;
+  else {
+    // const day = `${date.getDate()}`.padStart(2, 0);
+    // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    // const year = date.getFullYear();
+
+    // return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat(locale).format(date);
+  }
+};
+//------------------------formatting Cuurencies--------------------
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+};
 //-----------------------------------displayng movements or  the statemnet--------------------------------
-const displayMovement = function (accounts, sort = false) {
+
+const displayMovement = function (accs, sort = false) {
   containerMovements.innerHTML = '';
   const movs = sort
-    ? accounts.movements.slice().sort((a, b) => a - b)
-    : accounts.movements;
+    ? accs.movements.slice().sort((a, b) => a - b)
+    : accs.movements;
 
   // containerMovements.textContent = 0;
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const date = new Date(accs.movementsDates[i]);
+
+    const displayDate = formatMovementDate(date, accs.locale);
+
+    const formattedMov = formatCur(mov, accs.locale, accs.currency);
+
     const html = `
      <div class="movements__row">
       <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-      <div class="movements__value">${mov.toFixed(2)} INR</div>
+    <div class="movements__date">${displayDate}</div>
+      <div class="movements__value">${formattedMov} </div>
     </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 
 //----------------------------------------displaying balance----------------------------------------------
+
 const caclDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, cur) => acc + cur, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)} INR`;
+
+  labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency);
 };
 
 //--------------------------Calculating summary of balance withdraw and intrest--------------------------
 const calcDisplaySummary = function (account) {
   const income = account.movements
     .filter(mov => mov > 0)
-    .reduce((acc, mov) => acc + mov);
-  labelSumIn.textContent = `${income.toFixed(2)}INR`;
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = formatCur(income, account.locale, account.currency);
 
-  const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}INR`;
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = formatCur(
+    Math.abs(out),
+    account.locale,
+    account.currency
+  );
 
   const interest = account.movements
     .filter(mov => mov > 0)
     .map(deposits => (deposits * account.interestRate) / 100)
     .filter(int => int >= 1)
-    .reduce((acc, int) => acc + int);
-  labelSumInterest.textContent = `${interest.toFixed(2)}INR`;
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = formatCur(
+    interest,
+    account.locale,
+    account.currency
+  );
 };
 
 //-----------------------------------------creating usrname-----------------------------------------
@@ -164,7 +211,7 @@ const createUsernames = accs => {
 };
 
 createUsernames(accounts);
-let currentAccount;
+let currentAccount, timer;
 // ---------------------------------------------Updating UI ----------------------------------------------
 const updateUI = function (currentAccount) {
   containerApp.style.opacity = 100;
@@ -175,20 +222,32 @@ const updateUI = function (currentAccount) {
   //displaying the summary
   calcDisplaySummary(currentAccount);
 };
+// --------------------------------Logout Timer ---------------------------
+const startLogOutTimer = () => {
+  const tick = () => {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    //in each call ,print the remaning time to UI
+    labelTimer.textContent = `${min}:${sec}`;
 
-//fake login always
-// currentAccount = account1;
-// updateUI(currentAccount);
-// containerApp.style.opacity = 100;
+    //when 0 seconds,stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started 
+      `;
+      containerApp.style.opacity = 0;
+    }
+    //decrease  1s
+    time--;
+  };
+  //set time to 5 min
+  let time = 300;
+  //call the timer every second
+  tick(); //call in it immediatelly to avoid delay
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
 
-// const now = new Date();
-// const day = `${now.getDate()}`.padStart(2, 0);
-// const month = `${now.getMonth() + 1}`.padStart(2, 0);
-// const hours = now.getHours();
-// const min = now.getMinutes();
-
-// const year = now.getFullYear();
-// labelDate.textContent = `${day}/${month}/${year},${hour}:${min}`;
 //----------------------------------------Implementing Login--------------------------------------------
 
 btnLogin.addEventListener('click', function (e) {
@@ -203,10 +262,27 @@ btnLogin.addEventListener('click', function (e) {
     labelWelcome.textContent = `Welcome back , ${
       currentAccount.owner.split(' ')[0]
     }`;
-    //clearimg the fields
+    containerApp.style.opacity = 100;
+
+    //intertionalizing dates
+    const locale = navigator.language; //reading directly from users browsers
+    const now = new Date();
+    const options = {
+      day: 'numeric',
+      month: 'long',
+      weekday: 'long',
+      year: 'numeric',
+      minute: 'numeric',
+      hour: 'numeric',
+    };
+    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
+      now
+    );
+    // clearing the fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
-
+    if (timer) clearInterval(timer); //checking out if there any other timer on
+    timer = startLogOutTimer(); //this exist,implementing the timer in the users accounts
     //updating UI
     updateUI(currentAccount);
   } else {
@@ -235,8 +311,14 @@ btnTransfer.addEventListener('click', function (e) {
     alert(
       `${receiverAccount.owner} has received the amount ${amount} INR ,sent by you`
     );
+    //adding dates to transfers
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAccount.movementsDates.push(new Date().toISOString());
     //updating UI
     updateUI(currentAccount);
+    //reset the timer,every the time transfer is implemented
+    clearInterval(timer);
+    timer = startLogOutTimer(); //starting timer again
   }
 });
 // ---------------------------------Granting Loan-----------------------------------------------
@@ -245,15 +327,24 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    //add movement
-    currentAccount.movements.push(amount);
-    //updatng UI
-    updateUI(currentAccount);
-    //alert
-    alert(
-      `Loan of amount ${amount}INR has been sanctioned to ${currentAccount.owner}`
-    );
+    //after 2.5 sec loan will be approved
+    setTimeout(() => {
+      //add movement
+      currentAccount.movements.push(amount);
+      //adding dates to laon
+      currentAccount.movementsDates.push(new Date().toISOString());
+      //updatng UI
+      updateUI(currentAccount);
+      //reset the timer,every the time transfer is implemented
+      clearInterval(timer);
+      timer = startLogOutTimer(); //starting timer again
+      //alert
+      alert(
+        `Loan of amount ${amount}INR has been sanctioned to ${currentAccount.owner}`
+      );
+    }, 2500);
   }
+
   inputLoanAmount.value = '';
 });
 
