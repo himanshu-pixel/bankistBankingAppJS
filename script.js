@@ -3,6 +3,7 @@
 // BANKIST APP
 
 // ----------------------------------------------------Data-----------------------------------------------
+alert("for user-id,pin check at `https://github.com/himanshu-pixel/bankistBankingAppJS/edit/master/script.js` readme ")
 const account1 = {
   owner: 'Sahil Suman',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
